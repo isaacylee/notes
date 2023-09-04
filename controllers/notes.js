@@ -12,14 +12,14 @@ const getTokenFrom = request => {
   return null
 }
 
-notesRouter.get('/notes', async (request, response) => {
+notesRouter.get('/', async (request, response) => {
   const notes = await Note
     .find({}).populate('user', { username: 1, name: 1 })
 
   response.json(notes)
 })
 
-notesRouter.get('/notes/:id', async (request, response) => {
+notesRouter.get('/:id', async (request, response) => {
   const note = await Note.findById(request.params.id)
   if (note) {
     response.json(note)
@@ -28,7 +28,7 @@ notesRouter.get('/notes/:id', async (request, response) => {
   }
 })
 
-notesRouter.post('/notes', async (request, response) => {
+notesRouter.post('/', async (request, response) => {
   const body = request.body
 
   const decodedToken = jwt.verify(getTokenFrom(request), process.env.SECRET)
@@ -54,12 +54,12 @@ notesRouter.post('/notes', async (request, response) => {
   response.status(201).json(savedNote)
 })
 
-notesRouter.delete('notes/:id', async (request, response) => {
+notesRouter.delete('/:id', async (request, response) => {
   await Note.findByIdAndRemove(request.params.id)
   response.status(204).end()
 })
 
-notesRouter.put('notes/:id', async (request, response) => {
+notesRouter.put('/:id', async (request, response) => {
   const body = request.body
 
   const note = {
