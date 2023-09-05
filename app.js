@@ -9,6 +9,7 @@ const middleware = require('./utils/middleware')
 const logger = require('./utils/logger')
 const mongoose = require('mongoose')
 const MONGODB_URI = "mongodb+srv://leeisaacy:12341234@cluster0.towkkvb.mongodb.net/noteApp?retryWrites=true&w=majority"
+app.use(express.static('build'))
 
 
 mongoose.set('strictQuery', false)
