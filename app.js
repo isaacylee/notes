@@ -11,7 +11,6 @@ const mongoose = require('mongoose')
 const MONGODB_URI = "mongodb+srv://leeisaacy:12341234@cluster0.towkkvb.mongodb.net/noteApp?retryWrites=true&w=majority"
 
 
-
 mongoose.set('strictQuery', false)
 
 logger.info('connecting to', MONGODB_URI)
